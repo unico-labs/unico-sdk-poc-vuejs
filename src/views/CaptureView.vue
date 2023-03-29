@@ -115,7 +115,10 @@ export default {
             },
           });
         })
-        .catch(() => vm.handleError(`Erro ao preparar camera ${type}`));
+        .catch((e) => {
+          vm.handleError(`Erro ao preparar camera ${type}`);
+          vm.handleError(e);
+        });
     },
 
     prepareDocs(type, others = false) {
