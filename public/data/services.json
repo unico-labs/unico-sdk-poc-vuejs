@@ -1,1 +1,16 @@
-// Fill with your bundle
+{
+    "project_info": {
+        "project_number": "1294644037613179026",
+        "project_id": "sdk"
+    },
+    "client_info": {
+        "mobilesdk_app_id": "sdk",
+        "js_client_info": {
+            "hostname": "http://localhost:3000"
+        }
+    },
+    "host_info": {
+        "host_info": "nRMqSJJeWMZ0K4n9Dxs/Zhb5RslAxes+pmH0gJgmVtYOZYcCfqNhaVMBoKhhE4iuOgYQY95q7S0f15nsA3qjwQ==",
+        "host_key": "Z71OTBpmGVN2YzeFakbq/A3LvmukGS2jaY58UDZkUrRL7f2Dj+5gJXXdbMI1k1NC"
+    }
+}
