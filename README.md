@@ -18,9 +18,9 @@
 
 ### 📌 Versões Mínimas
 
-O componente de captura do SDK Web é compatível com as seguintes versões mínimas:
+O componente de captura do SDK Web é compatível com as seguintes versões:
 
-- **vuejs:** 2.6.13;
+- **vuejs:** 2.7.16;
 
 ### 📱 Dispositivos Compatíveis
 
@@ -189,6 +189,13 @@ Para iniciar a câmera com as configurações realizadas, siga os passos abaixo:
      console.error(error);
      // confira na aba "Referências" sobre os erros possíveis
    });
+   ```
+
+3. **Inicie o projeto:**
+
+   Utilize o comando `npm run serve -- --port 3000`, para iniciar o server na porta 3000 ou qualquer outra porta desejada que tenha sido configurada em:
+   ```javascript
+    .setHostname("<YOUR_HOSTNAME>"):
    ```
 
 ---
