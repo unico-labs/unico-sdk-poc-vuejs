@@ -1,27 +1,34 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import HomeView from "@/views/HomeView.vue";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
+import CameraCapture from '../views/CameraCapture.vue'
+import PhotoResult from '../views/PhotoResult.vue'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/",
-    name: "home",
-    component: HomeView,
+    path: '/',
+    name: 'Home',
+    component: Home
   },
   {
-    path: "/capture",
-    name: "capture",
-    component: () =>
-      import(/* webpackChunkName: "capture" */ "@/views/CaptureView.vue"),
+    path: '/capture',
+    name: 'CameraCapture',
+    component: CameraCapture
   },
-];
+  {
+    path: '/photo-result',
+    name: 'PhotoResult',
+    component: PhotoResult,
+    props: true
+  }
+]
 
 const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes,
-});
+  mode: 'history',
+  base: import.meta.env.BASE_URL,
+  routes
+})
 
-export default router;
+export default router
