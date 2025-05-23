@@ -85,7 +85,7 @@ export default {
             // Handle both document and selfie captures
             const base64Image = obj.base64 || obj.base64Document || obj.base64Selfie;
             const jwt = obj.encrypted || obj.encryptedDocument || obj.encryptedSelfie;
-            
+
             if (!base64Image || !jwt) {
               console.error("Missing image data in capture result:", obj);
               self.error = "Failed to process captured image. Please try again.";
@@ -107,7 +107,7 @@ export default {
               message: error?.message,
               fullError: error
             });
-        
+
             self.error = `Capture error: ${error?.message || 'Unknown error occurred'}. Check console for details.`;
             setTimeout(() => self.error = null, 5000);
           },
@@ -141,7 +141,7 @@ export default {
     },
     unicoCamera() {
       return new UnicoCheckBuilder()
-        .setResourceDirectory("/resources")
+        // .setResourceDirectory("/resources")  /* --A partir da versão 3.18.0, o SDK busca os recursos adicionais automaticamente se o método setResourceDirectory não for usado e as configurações de CSP estiverem corretas.-- /*
         .setModelsPath("/models")
         .setEnvironment(SDKEnvironmentTypes.UAT)
         .setTheme(this.unicoTheme)
@@ -187,49 +187,49 @@ export default {
       const cameraPromised = this.unicoCamera
         .prepareDocumentCamera(this.unicoConfig, DocumentCameraTypes.CPF)
         .catch(() => console.error('Error initializing CPF camera'));
-      
+
       cameraPromised.then(cameraOpener => cameraOpener.open(this.callback));
     },
     async openDocumentCameraCNHFrente() {
       const cameraPromised = this.unicoCamera
         .prepareDocumentCamera(this.unicoConfig, DocumentCameraTypes.CNH_FRENTE)
         .catch(() => console.error('Error initializing CNH Frente camera'));
-      
+
       cameraPromised.then(cameraOpener => cameraOpener.open(this.callback));
     },
     async openDocumentCameraCNHVerso() {
       const cameraPromised = this.unicoCamera
         .prepareDocumentCamera(this.unicoConfig, DocumentCameraTypes.CNH_VERSO)
         .catch(() => console.error('Error initializing CNH Verso camera'));
-      
+
       cameraPromised.then(cameraOpener => cameraOpener.open(this.callback));
     },
     async openDocumentCameraRGFrente() {
       const cameraPromised = this.unicoCamera
         .prepareDocumentCamera(this.unicoConfig, DocumentCameraTypes.RG_FRENTE)
         .catch(() => console.error('Error initializing RG Frente camera'));
-      
+
       cameraPromised.then(cameraOpener => cameraOpener.open(this.callback));
     },
     async openDocumentCameraRGVerso() {
       const cameraPromised = this.unicoCamera
         .prepareDocumentCamera(this.unicoConfig, DocumentCameraTypes.RG_VERSO)
         .catch(() => console.error('Error initializing RG Verso camera'));
-      
+
       cameraPromised.then(cameraOpener => cameraOpener.open(this.callback));
     },
     async openDocumentCameraRGFrenteNovo() {
       const cameraPromised = this.unicoCamera
         .prepareDocumentCamera(this.unicoConfig, DocumentCameraTypes.RG_FRENTE_NOVO)
         .catch(() => console.error('Error initializing RG Frente Novo camera'));
-      
+
       cameraPromised.then(cameraOpener => cameraOpener.open(this.callback));
     },
     async openDocumentCameraRGVersoNovo() {
       const cameraPromised = this.unicoCamera
         .prepareDocumentCamera(this.unicoConfig, DocumentCameraTypes.RG_VERSO_NOVO)
         .catch(() => console.error('Error initializing RG Verso Novo camera'));
-      
+
       cameraPromised.then(cameraOpener => cameraOpener.open(this.callback));
     },
     async openDocumentCameraOutros() {
