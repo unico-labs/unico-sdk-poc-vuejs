@@ -82,6 +82,13 @@ if current_version != site_version:
         subprocess.run(["git", "checkout", "-b", branch_name], check=True)
         subprocess.run(["git", "add", "package.json"], check=True)
         subprocess.run(["git", "commit", "-m", f"chore: bump {DEPENDENCY_NAME} to v{site_version}"], check=True)
+
+        # ⚠️ Implementação da correção: git pull --rebase ⚠️
+        # Essa linha deve vir logo depois do commit e antes do push.
+        # Ela garante que a branch local está atualizada com a branch remota.
+        # Se a branch remota já existir, o pull --rebase irá pegar as últimas mudanças
+        # e aplicar o seu commit por cima delas, evitando o erro de "push rejected".
+        subprocess.run(["git", "pull", "--rebase", "origin", branch_name], check=True)
         subprocess.run(["git", "push", "origin", branch_name], check=True)
 
         # Cria a tag para o release
