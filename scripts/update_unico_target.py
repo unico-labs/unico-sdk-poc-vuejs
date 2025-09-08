@@ -83,12 +83,8 @@ if current_version != site_version:
         subprocess.run(["git", "add", "package.json"], check=True)
         subprocess.run(["git", "commit", "-m", f"chore: bump {DEPENDENCY_NAME} to v{site_version}"], check=True)
 
-        # ⚠️ Implementação da correção: git pull --rebase ⚠️
-        # Essa linha deve vir logo depois do commit e antes do push.
-        # Ela garante que a branch local está atualizada com a branch remota.
-        # Se a branch remota já existir, o pull --rebase irá pegar as últimas mudanças
-        # e aplicar o seu commit por cima delas, evitando o erro de "push rejected".
-        subprocess.run(["git", "pull", "--rebase", "origin", branch_name], check=True)
+        makePullRequest(branch_name)
+        
         subprocess.run(["git", "push", "origin", branch_name], check=True)
 
         # Cria a tag para o release
@@ -115,3 +111,17 @@ if current_version != site_version:
 
 else:
     print("🔄 Versão já está na mais recente. Nenhuma ação necessária.")
+
+
+
+def makePullRequest(branch_name): 
+    try:
+        # ⚠️ Implementação da correção: git pull --rebase ⚠️
+        # Essa linha deve vir logo depois do commit e antes do push.
+        # Ela garante que a branch local está atualizada com a branch remota.
+        # Se a branch remota já existir, o pull --rebase irá pegar as últimas mudanças
+        # e aplicar o seu commit por cima delas, evitando o erro de "push rejected".
+        subprocess.run(["git", "pull", "--rebase", "origin", branch_name], check=True)
+    except subprocess.CalledProcessError as e:
+            # If pull fails, it means the branch is new, so we continue without pulling.
+            print(f"Branch does not exist on remote. Proceeding with initial push.")
