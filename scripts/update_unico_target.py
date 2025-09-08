@@ -121,6 +121,7 @@ def makePullRequest(branch_name):
         # Ela garante que a branch local está atualizada com a branch remota.
         # Se a branch remota já existir, o pull --rebase irá pegar as últimas mudanças
         # e aplicar o seu commit por cima delas, evitando o erro de "push rejected".
+        print("Passou pelo metodo de pull e fez o pull")
         subprocess.run(["git", "pull", "--rebase", "origin", branch_name], check=True)
     except subprocess.CalledProcessError as e:
             # If pull fails, it means the branch is new, so we continue without pulling.
