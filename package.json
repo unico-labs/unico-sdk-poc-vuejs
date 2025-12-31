@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "unico-webframe": "3.21.4",
+    "unico-webframe": "3.22.2",
     "util": "^0.12.4",
     "vue": "^2.7.16",
     "vue-router": "^3.6.5",
